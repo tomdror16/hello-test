@@ -1,0 +1,20 @@
+kind: Deployment
+metadata:
+  name: deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
+  labels:
+    app: hello-app
+spec:
+  replicas: 2 #The number of pods to be created in the Kubernetes cluster for the React.js application container
+  selector:
+    matchLabels:
+      app: hello-app
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - name: hello-app #The name of the react.js application container
+        image: tomdror166/dev:latest #The Docker image for building the React.js application container
+        ports:
+        - containerPort: 80 #The port for the React.js application container
