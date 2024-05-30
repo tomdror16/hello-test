@@ -11,6 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
+        git credentialsId: 'tomdror166@gmail.com', url: 'https://github.com/tomdror16/hello-test.git'
         git 'https://github.com/tomdror16/hello-test.git'
       }
     }
