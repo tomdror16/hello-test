@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = " tomdror166/dev"
+    dockerimagename = "tomdror166/dev:latest"
     dockerImage = ""
   }
 
