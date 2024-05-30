@@ -1,0 +1,31 @@
+
+3. What other information would you add to health endpoint json object in step 2? Explain what would be the use case for
+that extra information?
+a. May be some kind of an identity if it is deployed in multiple containers. IP address,location etc...
+
+4. Create a docker file to build, package, deploy, and run this application locally with Docker. - done
+
+Q:5 How would you automate the build/test/deploy process for this application? (a verbal answer is enough. installation
+of CICD is bonus, not required)
+
+5.1. What branching strategy would you use for development?
+We will use Git Forking for now as this repo is public repo and we will merge it if changes are good.
+We will use branching strategy working with folks from our project.
+
+5.2. What CICD tool/service would you use?
+Jenkins is chosen as it has wide variety of plugins and an open source.
+Installation of CICD(Jenkins):
+Step1: Install Jenkins Server on a container
+docker pull jenkins/jenkins:lts
+docker run -d --name jenkins_server -p 9080:8080 -p 50000:50000 -v <jenkins_home>:/var/jenkins_home jenkins/jenkins:lts
+where jenkins_home is any directory where jenkins stores configs, logs, artifacts.
+Step2: Login to configure Jenkins
+http://192.168.86.229:9080
+docker logs jenkins_server will show Jenkins Admin password. This can be used in the above Jenkins URL for finishing up
+the basic configuration.
+
+5.3 and 5.4. What stages would you have in the CICD pipeline?
+Build: Validate and build
+(Include this https://github.com/hadolint/hadolint or https://github.com/projectatomic/dockerfile_lint.)
+Test: Deploy and test a container
+Deploy: Deploy to stage and production environement.
