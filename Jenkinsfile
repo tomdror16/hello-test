@@ -15,7 +15,11 @@ pipeline {
                     url: 'https://github.com/tomdror16/hello-test.git'
       }
     }
-
+     stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
+    
     stage('Build image') {
       steps{
         script {
