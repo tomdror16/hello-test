@@ -18,8 +18,8 @@ pipeline {
   
     stage('Build image') {
       steps{
-        script {
-          dockerImage = docker.build dockerimagename
+        echo 'Building the ToDo application on Docker'
+        sh 'docker build . -t dev:latest'
         }
       }
     }
