@@ -1,14 +1,5 @@
 pipeline {
-  agent {
-        docker { image 'node:20.11.1-alpine3.19' }
-    }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
-        }
-    }  
+
   environment {
     dockerimagename = "tomdror166/dev:latest"
     dockerImage = ""
@@ -24,13 +15,14 @@ pipeline {
                     url: 'https://github.com/tomdror16/hello-test.git'
       }
     }
-  
-    stage('Build') {
-      steps {
-        echo 'Building the ToDo application on Docker'
-        sh 'docker build . -t dev:latest'
-            }
+
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
         }
+      }
+    }
 
     stage('Pushing Image') {
       environment {
