@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "tomdror166/dev:latest"
+    dockerimagename = "bravinwasike/react-app"
     dockerImage = ""
   }
 
@@ -11,8 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git branch: 'main', 
-                    url: 'https://github.com/tomdror16/hello-test.git'
+        git 'https://github.com/Bravinsimiyu/jenkins-kubernetes-deployment.git'
       }
     }
 
@@ -39,11 +38,12 @@ pipeline {
 
     stage('Deploying React.js container to Kubernetes') {
       steps {
-           sh ‘kubectl apply -f deployments.yaml’
-           sh ‘kubectl apply -f service.yaml’
+        script {
+          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
     }
 
   }
 
+}
