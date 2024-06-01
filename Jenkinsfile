@@ -38,12 +38,11 @@ pipeline {
     }
     stage(‘Deploy to Minikube’) {
       steps {
-          sh ‘kubectl apply -f my-react-deployments.yaml’
-
+          sh ‘kubectl apply -f deployments.yaml’
+          sh ‘kubectl apply -f service.yaml’
         }
       }
     }
 
   }
 
-}
