@@ -4,11 +4,6 @@ pipeline {
     dockerimagename = "tomdror166/dev:latest"
     dockerImage = ""
   }
-  agent {
-  docker {
-    image 'tomdror166/dev:latest'
-  }
-}
 
   stages {
 
