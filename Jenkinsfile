@@ -36,11 +36,10 @@ pipeline {
         }
       }
     }
-
-    stage('Deploying React.js container to Kubernetes') {
+    stage(‘Deploy to Minikube’) {
       steps {
-        script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+          sh ‘kubectl apply -f my-react-deployments.yaml’
+
         }
       }
     }
