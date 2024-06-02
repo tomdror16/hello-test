@@ -57,5 +57,3 @@ stage('Deploy to Kubernetes Cluster') {
     }
 
   }
-
-}
